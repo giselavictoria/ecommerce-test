@@ -123,7 +123,7 @@ const renderProducts = firulais => {
     <p class="card-text">
     ${product.descripcion}
     </p>
-    <button class="btn btn-primary btn-comprar" value="${product.id}">Add to Cart</button>
+    <button class="btn btn-primary btn-comprar" value="${product.id}" onclick="addToCart('${product.id}')">Add to Cart</button>
     </div>
   </div>
   </div>
@@ -149,9 +149,9 @@ const openLinks = evento => {
 	hideSplash();
 	renderTitle(buscarTitulo);
 	renderProducts(buscarSeccion);
-	const btnComprar = document.querySelectorAll(".btn-comprar");
-	console.log(btnComprar);
-	btnComprar.forEach(btn => btn.addEventListener("click", addToCart));
+	// const btnComprar = document.querySelectorAll(".btn-comprar");
+	// console.log(btnComprar);
+	// btnComprar.forEach(btn => btn.addEventListener("click", addToCart));
 };
 
 // renderiza en el carrito
@@ -181,12 +181,10 @@ const renderCart = array => {
 // agrega al carrito
 const cantidadProductosCarrito = document.querySelector("#cantidadProductosCarrito");
 let contadorProductosCarrito = 0;
-const addToCart = evento => {
-	console.log("El id del producto capturado con el boton: ", evento.target.value);
-	const idDelProductoABuscar = evento.target.value;
-	const buscarProductoEnDB = productos.find(
-		elemento => elemento.id === idDelProductoABuscar
-	);
+const addToCart = id => {
+	/*console.log("El id del producto capturado con el boton: ", evento.target.value);*/
+	/*const idDelProductoABuscar = evento.target.value;*/
+	const buscarProductoEnDB = productos.find(elemento => elemento.id === id);
 	console.log("Este es el producto que estas buscando: ", buscarProductoEnDB);
 	console.log("Antes de guardar en el carrito: ", carrito);
 	contadorProductosCarrito++;
