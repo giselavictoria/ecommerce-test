@@ -228,9 +228,6 @@ const showHome = () => {
 
 // search bar
 $("#inputBusqueda").change(e => {
-	const btnComprar = document.querySelectorAll(".btn-comprar");
-	console.log(btnComprar);
-	btnComprar.forEach(btn => btn.addEventListener("click", addToCart));
 	const inputProductoABuscar = e.target.value;
 	console.log(inputProductoABuscar);
 	const buscarinputEnDB = productos.find(
