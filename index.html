@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- FONT AWESOME v 5.0 -->
+		<script
+			src="https://kit.fontawesome.com/23d00ece4e.js"
+			crossorigin="anonymous"
+		></script>
+
+		<!-- GOOGLE FONTS -->
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,600;1,500&family=Poppins:wght@300;500&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- BOOTSTRAP v.5.0 -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+			crossorigin="anonymous"
+		/>
+
+		<!-- MIS ESTILOS -->
+		<link rel="stylesheet" href="css/style.css" />
+
+		<title>E-commerce</title>
+	</head>
+
+	<body>
+		<!-- HEADER-->
+		<header>
+			<!-- NAV MENU -->
+			<section class="header-main border-bottom bg-white">
+				<div class="container-fluid">
+					<div class="row pt-3 pb-3 d-flex align-items-center">
+						<div class="col-md-2">
+							<a class="navbar-brand" href="#">E-shop</a>
+						</div>
+						<div class="col-md-7">
+							<form class="d-flex">
+								<input
+									class="form-control me-2"
+									type="search"
+									placeholder="Buscar"
+									aria-label="Search"
+									id="inputBusqueda"
+								/>
+								<button class="btn btn-outline-success" type="submit" id="botonBusqueda">
+									Buscar
+								</button>
+							</form>
+						</div>
+						<div class="col-md-3">
+							<a href="#!" class="nav-link navbar-link-2">
+								<span class="badge bg-primary rounded-pill" id="cantidadProductosCarrito"
+									>0</span
+								>
+								<span onclick="openNav()"><i class="fas fa-shopping-cart pl-0"></i></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container-fluid">
+					<a class="navbar-brand d-lg-none d-md-flex" href="#">Categorias</a>
+					<button
+						class="navbar-toggler"
+						type="button"
+						data-bs-toggle="collapse"
+						data-bs-target="#navbarNavDropdown"
+						aria-controls="navbarNavDropdown"
+						aria-expanded="false"
+						aria-label="Toggle navigation"
+					>
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarNavDropdown">
+						<ul class="navbar-nav">
+							<li class="nav-item">
+								<a
+									id="linkHome"
+									class="nav-link active"
+									aria-current="page"
+									value="home"
+									href="#home"
+									>Home</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link links" href="#masculina" value="masculina"
+									>Indumentaria Masculina</a
+								>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link links" href="#femenina" value="femenina"
+									>Indumentaria Femenina</a
+								>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<!-- SPLASH -->
+		<section id="splash">
+			<div class="container-fluid p-0">
+				<div class="row">
+					<div class="col-12">
+						<img src="img/slide700.png" alt="fondo" class="img-fluid" />
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- INDUMENTARIA -->
+		<section id="productos">
+			<div class="container" id="containerTitle">
+				<div class="row" id="productosInner"></div>
+			</div>
+		</section>
+
+		<!-- SIDENAV CARRITO -->
+		<section id="sideNavCarrito" class="sideNavCarrito">
+			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+			<div id="mySidenav" class="sidenav"></div>
+		</section>
+
+		<!-- SCRIPTS DE BOOTSTRAP -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+			crossorigin="anonymous"
+		></script>
+
+		<!-- SCRIPTS DE JQUERY -->
+		<script
+			src="https://code.jquery.com/jquery-3.6.0.min.js"
+			integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+			crossorigin="anonymous"
+		></script>
+
+		<!-- MIS SCRIPTS -->
+		<script src="js/main.js"></script>
+	</body>
+</html>
