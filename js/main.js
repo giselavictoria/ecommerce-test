@@ -1,75 +1,46 @@
-//Esto esta simulando mi base de datos
-const productos = [
-	{
-		id: "1",
-		nombre: "producto 1",
-		precio: 5000,
-		seccion: "masculina",
-		imagen: "./img/ropa1.png",
-		descripcion: "descripcion del producto",
-		alt: "descripcion de la imagen",
-		cantidad: 1,
+let productos;
+$.ajax({
+	type: "GET",
+	url: "https://fakestoreapi.com/products",
+})
+	.done(data => {
+		console.log(data);
+		productos = data;
+		return productos;
+	})
+	.fail(error => {
+		console.log(error);
+	});
+
+$.ajax({
+	type: "POST",
+	url: "https://fakestoreapi.com/products",
+	data: JSON.stringify({
+		title: "test product",
+		price: 13.5,
+		description: "lorem ipsum set",
+		image: "https://i.pravatar.cc",
+		category: "electronic",
+	}),
+	headers: {
+		"Content-type": "application/json; charset=UTF-8",
 	},
-	{
-		id: "2",
-		nombre: "producto 2",
-		precio: 6000,
-		seccion: "masculina",
-		imagen: "./img/ropa1.png",
-		descripcion: "descripcion del producto",
-		alt: "descripcion de la imagen",
-		cantidad: 1,
-	},
-	{
-		id: "3",
-		nombre: "producto 3",
-		precio: 7000,
-		seccion: "masculina",
-		imagen: "./img/ropa1.png",
-		descripcion: "descripcion del producto",
-		alt: "descripcion de la imagen",
-		cantidad: 1,
-	},
-	{
-		id: "4",
-		nombre: "producto 4",
-		precio: 8000,
-		seccion: "femenina",
-		imagen: "./img/ropa2.png",
-		descripcion: "descripcion del producto",
-		alt: "descripcion de la imagen",
-		cantidad: 1,
-	},
-	{
-		id: "5",
-		nombre: "producto 5",
-		precio: 3000,
-		seccion: "femenina",
-		imagen: "./img/ropa2.png",
-		descripcion: "descripcion del producto",
-		alt: "descripcion de la imagen",
-		cantidad: 1,
-	},
-	{
-		id: "6",
-		nombre: "producto 6",
-		precio: 1000,
-		seccion: "femenina",
-		imagen: "./img/ropa2.png",
-		descripcion: "descripcion del producto",
-		alt: "descripcion de la imagen",
-		cantidad: 1,
-	},
-];
+})
+	.done(data => {
+		console.log(data);
+	})
+	.fail(error => {
+		console.log(error);
+	});
 
 const productosTitle = [
 	{
-		seccion: "masculina",
+		seccion: "men's clothing",
 		imagen: "./img/masculinatitle.png",
 		alt: "descripcion de la imagen",
 	},
 	{
-		seccion: "femenina",
+		seccion: "women's clothing",
 		imagen: "./img/femeninatitle.png",
 		alt: "descripcion de la imagen",
 	},
@@ -117,11 +88,11 @@ const renderProducts = firulais => {
 		html += `
     <div class="col-md-4" >
     <div class="card">
-    <img src="${product.imagen}" class="card-img-top" alt="${product.alt}" />
+    <img src="${product.image}" class="card-img-top" alt="" />
     <div class="card-body">
-    <h5 class="card-title">${product.nombre}</h5>
+    <h5 class="card-title">${product.title}</h5>
     <p class="card-text">
-    ${product.descripcion}
+    ${product.price}
     </p>
     <button class="btn btn-primary btn-comprar" value="${product.id}" onclick="addToCart('${product.id}')">Add to Cart</button>
     </div>
@@ -139,8 +110,9 @@ const openLinks = evento => {
 		evento.target.getAttribute("value")
 	);
 	const linkAAbrir = evento.target.getAttribute("value");
+	console.log(linkAAbrir);
 
-	const buscarSeccion = productos.filter(elemento => elemento.seccion === linkAAbrir);
+	const buscarSeccion = productos.filter(elemento => elemento.category === linkAAbrir);
 	const buscarTitulo = productosTitle.filter(elemento => elemento.seccion === linkAAbrir);
 	console.log("Este es el producto que estas buscando: ", buscarSeccion);
 	//Aqui termina la logica para agregar al ARRAY del carrito
@@ -167,9 +139,9 @@ const renderCart = array => {
 	array.forEach(product => {
 		html2 += `
     <article class="articulo">
-    <img src="${product.imagen}" class="imagen-product" alt="${product.alt}"
-          <h2>${product.nombre}</h2>
-          <p>${product.descripcion}</p>
+    <img src="${product.image}" class="imagen-product" alt="${product.alt}"
+          <h2>${product.title}</h2>
+          <p>${product.description}</p>
           <p id="cantidadProducto">${product.cantidad}</p>
           <button class="btn btn-primary btn-delete" onclick="deleteFromCart('${product.id}')">X</button>
       </article>
@@ -235,20 +207,22 @@ $("#inputBusqueda").change(e => {
 	);
 
 	console.log(buscarinputEnDB.seccion);
-	if (buscarinputEnDB.seccion === "masculina") {
+	if (buscarinputEnDB.seccion === "men's clothing") {
 		const listadoMasculina = productos.filter(
-			elemento => elemento.seccion === "masculina"
+			elemento => elemento.seccion === "men's clothing"
 		);
 		const buscarTituloSeccionMasculina = productosTitle.filter(
-			elemento => elemento.seccion === "masculina"
+			elemento => elemento.seccion === "men's clothing"
 		);
 		hideSplash();
 		renderTitle(buscarTituloSeccionMasculina);
 		renderProducts(listadoMasculina);
-	} else if (buscarinputEnDB.seccion === "femenina") {
-		const listadoFemenina = productos.filter(elemento => elemento.seccion === "femenina");
+	} else if (buscarinputEnDB.seccion === "women's clothing") {
+		const listadoFemenina = productos.filter(
+			elemento => elemento.seccion === "women's clothing"
+		);
 		const buscarTituloSeccionFemenina = productosTitle.filter(
-			elemento => elemento.seccion === "femenina"
+			elemento => elemento.seccion === "women's clothing"
 		);
 		hideSplash();
 		renderTitle(buscarTituloSeccionFemenina);
